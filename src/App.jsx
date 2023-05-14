@@ -1,9 +1,30 @@
+import { useState } from 'react'
 import './App.css'
 
 function App() {
+  const [newTask, setNewTask] = useState('')
+
+  const handleSubmit = () => {}
+
   return (
     <>
-      <p>Click on the Vite and React logos to learn more</p>
+      <header>
+        <p>ToDo App</p>
+      </header>
+      <hr />
+      <main>
+        <form onSubmit={handleSubmit} className='new-task-form'>
+          <input
+            type='text'
+            name='todo'
+            id='todo'
+            value={newTask}
+            onChange={e => setNewTask(e.target.value)}
+            placeholder='Do laundry, clean bedroom...'
+          />
+          <button>Add task</button>
+        </form>
+      </main>
     </>
   )
 }
