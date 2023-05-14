@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import TaskForm from './components/TaskForm'
+import TaskList from './components/TaskList'
 
 function App() {
   const [tasks, setTasks] = useState([])
@@ -17,11 +18,7 @@ function App() {
       <hr />
       <main>
         <TaskForm onSubmit={handleSubmit} />
-        <section>
-          {tasks.map(task => (
-            <p key={task}>{task}</p>
-          ))}
-        </section>
+        <TaskList tasks={tasks} />
       </main>
     </>
   )
