@@ -2,9 +2,14 @@ import { useState } from 'react'
 import './App.css'
 
 function App() {
+  const [tasks, setTasks] = useState([])
   const [newTask, setNewTask] = useState('')
 
-  const handleSubmit = () => {}
+  const handleSubmit = e => {
+    e.preventDefault()
+    setTasks(prevTasks => [...prevTasks, newTask])
+    setNewTask('')
+  }
 
   return (
     <>
@@ -24,6 +29,11 @@ function App() {
           />
           <button>Add task</button>
         </form>
+        <section>
+          {tasks.map(task => (
+            <p key={task}>{task}</p>
+          ))}
+        </section>
       </main>
     </>
   )
