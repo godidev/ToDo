@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useState, useId } from 'react'
 
 export default function TaskForm({ onSubmit }) {
   const [newTask, setNewTask] = useState('')
+  const id = useId()
 
   const handleChange = e => {
     setNewTask(e.target.value)
@@ -9,7 +10,7 @@ export default function TaskForm({ onSubmit }) {
 
   const handleSubmit = e => {
     e.preventDefault()
-    onSubmit(newTask)
+    onSubmit({ task: newTask, done: false, id: id + newTask })
     setNewTask('')
   }
 

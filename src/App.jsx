@@ -10,6 +10,13 @@ function App() {
     setTasks(prevTasks => [...prevTasks, task])
   }
 
+  const handleCheckbox = id => {
+    const updatedTasks = tasks.map(task =>
+      task.id === id ? { ...task, done: !task.done } : { ...task }
+    )
+    setTasks(updatedTasks)
+  }
+
   return (
     <>
       <header>
@@ -18,7 +25,7 @@ function App() {
       <hr />
       <main>
         <TaskForm onSubmit={handleSubmit} />
-        <TaskList tasks={tasks} />
+        <TaskList tasks={tasks} handleCheckbox={handleCheckbox} />
       </main>
     </>
   )
