@@ -1,14 +1,12 @@
 import { useState } from 'react'
 import './App.css'
+import TaskForm from './components/TaskForm'
 
 function App() {
   const [tasks, setTasks] = useState([])
-  const [newTask, setNewTask] = useState('')
 
-  const handleSubmit = e => {
-    e.preventDefault()
-    setTasks(prevTasks => [...prevTasks, newTask])
-    setNewTask('')
+  const handleSubmit = task => {
+    setTasks(prevTasks => [...prevTasks, task])
   }
 
   return (
@@ -18,17 +16,7 @@ function App() {
       </header>
       <hr />
       <main>
-        <form onSubmit={handleSubmit} className='new-task-form'>
-          <input
-            type='text'
-            name='todo'
-            id='todo'
-            value={newTask}
-            onChange={e => setNewTask(e.target.value)}
-            placeholder='Do laundry, clean bedroom...'
-          />
-          <button>Add task</button>
-        </form>
+        <TaskForm onSubmit={handleSubmit} />
         <section>
           {tasks.map(task => (
             <p key={task}>{task}</p>
