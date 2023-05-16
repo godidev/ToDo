@@ -1,10 +1,17 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import TaskForm from './components/TaskForm'
 import TaskList from './components/TaskList'
 
 function App() {
-  const [tasks, setTasks] = useState([])
+  const [tasks, setTasks] = useState(() => {
+    const res = window.localStorage.getItem('tasks')
+    return res && JSON.parse(res)
+  })
+
+  useEffect(() => {
+    window.localStorage.setItem('tasks', JSON.stringify(tasks))
+  }, [tasks])
 
   const handleSubmit = task => {
     setTasks(prevTasks => [...prevTasks, task])
