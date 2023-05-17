@@ -48,3 +48,12 @@ main {
   word-wrap: break-word;
   white-space: normal;
 }
+
+.alert-msg {
+  border: 1px solid red;
+  font-weight: 600;
+  background-color: rgb(255, 190, 190);
+  text-align: center;
+  padding: 8px 0;
+  margin: 0;
+}
