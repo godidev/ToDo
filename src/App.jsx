@@ -2,12 +2,15 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import TaskForm from './components/TaskForm'
 import TaskList from './components/TaskList'
+import { deleteTask, getLocalStorage } from './services/tasks'
 
 function App() {
-  const [tasks, setTasks] = useState(() => {
-    const res = window.localStorage.getItem('tasks')
-    return res && JSON.parse(res)
-  })
+  const [tasks, setTasks] = useState(() => getLocalStorage())
+
+  const deleteOneTask = id => {
+    const updatedTasks = deleteTask(id)
+    setTasks(updatedTasks)
+  }
 
   useEffect(() => {
     window.localStorage.setItem('tasks', JSON.stringify(tasks))
@@ -32,7 +35,13 @@ function App() {
       <hr />
       <main>
         <TaskForm onSubmit={handleSubmit} />
-        <TaskList tasks={tasks} handleCheckbox={handleCheckbox} />
+        {tasks.length > 0 && (
+          <TaskList
+            tasks={tasks}
+            handleCheckbox={handleCheckbox}
+            deleteTask={deleteOneTask}
+          />
+        )}
       </main>
     </>
   )

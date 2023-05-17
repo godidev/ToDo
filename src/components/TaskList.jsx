@@ -1,6 +1,6 @@
 import Task from './Task'
 
-export default function TaskList({ tasks, handleCheckbox }) {
+export default function TaskList({ tasks, handleCheckbox, deleteTask }) {
   return (
     <section>
       <ul className='task-list'>
@@ -11,6 +11,7 @@ export default function TaskList({ tasks, handleCheckbox }) {
             active={task.done}
             id={task.id}
             handleCheckbox={handleCheckbox}
+            deleteTask={deleteTask}
           />
         ))}
       </ul>

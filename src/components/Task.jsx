@@ -1,4 +1,4 @@
-export default function Task({ task, id, active, handleCheckbox }) {
+export default function Task({ task, id, active, handleCheckbox, deleteTask }) {
   return (
     <li>
       <input
@@ -7,6 +7,7 @@ export default function Task({ task, id, active, handleCheckbox }) {
         onChange={() => handleCheckbox(id)}
       />
       {task}
+      <button onClick={() => deleteTask(id)}>Delete</button>
     </li>
   )
 }
