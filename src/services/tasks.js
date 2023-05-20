@@ -1,6 +1,6 @@
 const getLocalStorage = () => {
   const res = window.localStorage.getItem('tasks')
-  return res && JSON.parse(res)
+  return res ? JSON.parse(res) : []
 }
 
 const deleteTask = id => {
