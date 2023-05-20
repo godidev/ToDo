@@ -9,4 +9,10 @@ const deleteTask = id => {
   return updatedList
 }
 
-export { getLocalStorage, deleteTask }
+const deleteSelected = () => {
+  const tasks = getLocalStorage()
+  const updatedList = tasks.filter(task => !task.done)
+  return updatedList
+}
+
+export { getLocalStorage, deleteTask, deleteSelected }

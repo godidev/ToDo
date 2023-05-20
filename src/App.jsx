@@ -2,13 +2,18 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import TaskForm from './components/TaskForm'
 import TaskList from './components/TaskList'
-import { deleteTask, getLocalStorage } from './services/tasks'
+import { deleteSelected, deleteTask, getLocalStorage } from './services/tasks'
 
 function App() {
   const [tasks, setTasks] = useState(() => getLocalStorage())
 
   const deleteOneTask = id => {
     const updatedTasks = deleteTask(id)
+    setTasks(updatedTasks)
+  }
+
+  const deleteDone = () => {
+    const updatedTasks = deleteSelected()
     setTasks(updatedTasks)
   }
 
@@ -34,7 +39,7 @@ function App() {
       </header>
       <hr />
       <main>
-        <TaskForm onSubmit={handleSubmit} />
+        <TaskForm onSubmit={handleSubmit} deleteDone={deleteDone} />
         {tasks.length > 0 && (
           <TaskList
             tasks={tasks}

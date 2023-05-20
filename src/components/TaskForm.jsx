@@ -1,6 +1,6 @@
 import { useState, useId } from 'react'
 
-export default function TaskForm({ onSubmit }) {
+export default function TaskForm({ onSubmit, deleteDone }) {
   const [newTask, setNewTask] = useState('')
   const [alert, setAlert] = useState()
   const id = useId()
@@ -33,7 +33,9 @@ export default function TaskForm({ onSubmit }) {
       {alert && <p className='alert-msg'>{alert}</p>}
       <div className='form-buttons'>
         <button>Add task</button>
-        <button type='button'>Delete selected</button>
+        <button type='button' onClick={deleteDone}>
+          Delete selected
+        </button>
       </div>
     </form>
   )
