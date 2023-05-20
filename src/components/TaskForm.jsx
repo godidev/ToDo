@@ -31,7 +31,10 @@ export default function TaskForm({ onSubmit }) {
         placeholder='Do laundry, clean bedroom...'
       />
       {alert && <p className='alert-msg'>{alert}</p>}
-      <button>Add task</button>
+      <div className='form-buttons'>
+        <button>Add task</button>
+        <button type='button'>Delete selected</button>
+      </div>
     </form>
   )
 }
